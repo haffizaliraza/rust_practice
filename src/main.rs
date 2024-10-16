@@ -1,5 +1,6 @@
 use std::io;
 use rand::Rng;
+use std::cmp::Ordering;
 
 
 pub struct Tweet {
@@ -97,6 +98,31 @@ struct IpAddr {
 
 
 fn main() {
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+
+    loop {
+        println!("Please Enter your guess!");
+        let mut guess_number = String::new();
+
+        io::stdin()
+        .read_line(&mut guess_number)
+        .expect("Failed to read line");
+    
+        let guess_number: u32 = match guess_number.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+
+        match guess_number.cmp(&secret_number) {
+            Ordering::Less => println!("Too Less"),
+            Ordering::Greater => println!("Too Greater"),
+            Ordering::Equal => {
+                println!("{}", guess_number);
+                break;
+            }
+        }
+
+    }
 
     let localhost = IpAddr{
         kind: IpAddrKind::V4(127, 0, 0, 1),
