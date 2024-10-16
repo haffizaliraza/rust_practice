@@ -85,8 +85,37 @@ fn first_word(s: &str) -> &str {
     return &s[..];
 }
 
+enum IpAddrKind {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+struct IpAddr {
+    kind: IpAddrKind,
+    address: String,
+}
+
 
 fn main() {
+
+    let localhost = IpAddr{
+        kind: IpAddrKind::V4(127, 0, 0, 1),
+        address: String::from("127.0.0.1"),
+    };
+
+    let localhost = IpAddrKind::V4(127, 0, 0, 1);
+
+    let x = 5;
+    let y = 10;
+
+    assert!(x < y, "x should be less than y");
+    // assert!(x > y, "x should not be greater than y");
+    let a = 3;
+    let b = 1 + 2;
+    assert_eq!(a, b);
+
+    assert_eq!(a, b, "we are testing addition with {} and {}", a, b);
+
     let my_string = String::from("Hello world");
     let word = first_word(&my_string);
     println!("first word is: {}", word);
