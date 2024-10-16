@@ -99,7 +99,10 @@ struct IpAddr {
 
 fn main() {
     let secret_number = rand::thread_rng().gen_range(1..=100);
-
+    let nn = b'A';
+    let heart_eyed_cat = '😻';
+    let tt: (i32, f32) = (0, 0.5);
+    println!("u8 {}, {}, {:?}", nn, heart_eyed_cat, tt);
     loop {
         println!("Please Enter your guess!");
         let mut guess_number = String::new();
